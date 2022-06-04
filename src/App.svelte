@@ -1,16 +1,23 @@
 <script>
 	export let name;
 
+	let min = 0;
+	let max = 100;
+
 	let randomValue = "Random";
 
-	function getRandomInt() {
-		randomValue = Math.floor(Math.random() * 100);
+	function getRandomInt(min, max) {
+		min = Math.ceil(min);
+		max = Math.floor(max);
+		randomValue = Math.floor(Math.random() * (max - min + 1)) + min;
 	}
 </script>
 
 <main>
 	<h1>{name}</h1>
-	<button on:click={getRandomInt}>
+	<input bind:value={min} placeholder="Enter min value">
+	<input bind:value={max} placeholder="Enter max value">
+	<button on:click={getRandomInt(min, max)}>
 		Push your luck
 	</button>
 	<h1>{randomValue}</h1>
