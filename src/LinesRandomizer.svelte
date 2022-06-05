@@ -1,8 +1,14 @@
 <script>
-    let newLine;
+    import Paper, { Title, Subtitle, Content } from '@smui/paper';
+    import Textfield from '@smui/textfield';
+    import Button from '@smui/button';
+    import { Label } from '@smui/common';
+    import List, { Item, Separator, Text } from '@smui/list';
+
+    let newLine = "";
     $: lines = [];
 
-    let randomLine = "Result";
+    let randomLine = "(?)";
 
     function addNewLine() {
         if (newLine) {
@@ -17,21 +23,38 @@
     }
 </script>
 
-<h2>Lines Randomizer</h2>
-<input bind:value={newLine} placeholder="Enter your text">
-<button on:click={addNewLine}>
-    Add New Line
-</button>
 <div>
-    <ul>
-        {#each lines as line, i}
-            <li>
-                {i + 1}: {line}
-            </li>
-        {/each}
-    </ul>
+    <Paper>
+        <Title><h3>Lines Randomizer</h3></Title>
+        <Subtitle>Returns a random line from the list of lines.</Subtitle>
+        <Content>
+            <div>
+                <Textfield bind:value={newLine} label="New line" variant="filled"/>
+                <Button on:click={addNewLine} variant="outlined">
+                    <Label>Add Line</Label>
+                </Button>
+            </div>
+            <div>
+                <h2><Label>Lines:</Label></h2>
+                <List>
+                    {#each lines as line, i}
+                        <Item>
+                            <Text>{i + 1}: {line}</Text>
+                        </Item>
+                    {/each}
+                </List>
+            </div>
+            <div>
+                <Button on:click={getRandomLine} variant="raised">
+                    <Label>Push your luck!</Label>
+                </Button>
+            </div>
+            <div>
+                <h2><Label>Result:</Label></h2>
+            </div>
+            <div>
+                <Label>{randomLine}</Label>
+            </div>
+        </Content>
+    </Paper>
 </div>
-<button on:click={getRandomLine}>
-    Push your luck
-</button>
-<h2>{randomLine}</h2>

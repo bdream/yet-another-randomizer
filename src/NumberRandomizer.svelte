@@ -1,8 +1,13 @@
 <script>
+    import Paper, { Title, Subtitle, Content } from '@smui/paper';
+    import Textfield from '@smui/textfield';
+    import Button from '@smui/button';
+    import { Label } from '@smui/common';
+
     let minNumber = 0;
     let maxNumber = 100;
 
-    let randomNumber = "Result";
+    let randomNumber = "(?)";
 
     function generateRandomNumber() {
         let min = Math.ceil(minNumber);
@@ -11,12 +16,24 @@
     }
 </script>
 
-<h2>Number Randomizer</h2>
 <div>
-    <input bind:value={minNumber} placeholder="Enter min value">
-    <input bind:value={maxNumber} placeholder="Enter max value">
-    <button on:click={generateRandomNumber}>
-        Push your luck
-    </button>
+    <Paper>
+        <Title><h3>Number Randomizer</h3></Title>
+        <Subtitle>Returns a random integer number from the [min, max] interval</Subtitle>
+        <Content>
+            <div>
+                <Textfield bind:value={minNumber} label="Min value" type="number" variant="filled"/>
+                <Textfield bind:value={maxNumber} label="Max value" type="number" variant="filled"/>
+                <Button on:click={generateRandomNumber} variant="raised">
+                    <Label>Push your luck!</Label>
+                </Button>
+            </div>
+            <div>
+                <h2><Label>Result:</Label></h2>
+            </div>
+            <div>
+                <Label>{randomNumber}</Label>
+            </div>
+        </Content>
+    </Paper>
 </div>
-<h2>{randomNumber}</h2>

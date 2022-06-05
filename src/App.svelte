@@ -1,3 +1,13 @@
+<svelte:head>
+	<!-- Fonts -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700" />
+	<!-- Material Typography -->
+	<link rel="stylesheet" href="https://unpkg.com/@material/typography@11.0.0/dist/mdc.typography.css" />
+	<!-- SMUI -->
+	<link rel="stylesheet" href="https://unpkg.com/svelte-material-ui/bare.css" />
+</svelte:head>
+
 <script>
 	import NumberRandomizer from './NumberRandomizer.svelte';
 	import LinesRandomizer from "./LinesRandomizer.svelte";
@@ -7,32 +17,6 @@
 
 <main>
 	<h1>{name}</h1>
-	<div>
-		<NumberRandomizer/>
-	</div>
-	<div>
-		<LinesRandomizer/>
-	</div>
+	<NumberRandomizer/>
+	<LinesRandomizer/>
 </main>
-
-<style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
-	}
-
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}
-</style>
