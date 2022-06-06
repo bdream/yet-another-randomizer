@@ -9,14 +9,39 @@
 </svelte:head>
 
 <script>
+	import Tab, { Label } from '@smui/tab';
+	import TabBar from '@smui/tab-bar';
 	import NumberRandomizer from './NumberRandomizer.svelte';
 	import LinesRandomizer from "./LinesRandomizer.svelte";
 
 	export let name;
+
+	const TABS = [
+		{ id: 'number-randomizer', label: 'Number Randomizer' },
+		{ id: 'lines-randomizer', label: 'Lines Randomizer' }
+	];
+
+	let activeTab = TABS[0];
 </script>
 
 <main>
 	<h1>{name}</h1>
-	<NumberRandomizer/>
-	<LinesRandomizer/>
+
+	<div>
+		<TabBar tabs={TABS} let:tab minWidth bind:active={activeTab}>
+			<Tab {tab}>
+				<Label>{tab.label}</Label>
+			</Tab>
+		</TabBar>
+
+		{#if activeTab && activeTab.id === 'number-randomizer'}
+			<NumberRandomizer/>
+		{:else if activeTab && activeTab.id === 'lines-randomizer'}
+			<LinesRandomizer/>
+		{:else}
+			<h1 class="error">Error - Please Report</h1>
+		{/if}
+	</div>
+
+
 </main>
