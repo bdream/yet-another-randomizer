@@ -9,7 +9,8 @@
 </svelte:head>
 
 <script>
-	import Tab, { Label } from '@smui/tab';
+	import Button, { Label, Icon } from '@smui/button';
+	import Tab from '@smui/tab';
 	import TabBar from '@smui/tab-bar';
 	import NumberRandomizer from './NumberRandomizer.svelte';
 	import LinesRandomizer from "./LinesRandomizer.svelte";
@@ -25,7 +26,12 @@
 </script>
 
 <main>
-	<h1>{name}</h1>
+	<h1>
+		{name}
+		<Button href="https://github.com/bdream/yet-another-randomizer" target="_blank">
+			<Label>Source Code</Label>
+		</Button>
+	</h1>
 
 	<div>
 		<TabBar tabs={TABS} let:tab minWidth bind:active={activeTab}>
@@ -43,5 +49,10 @@
 		{/if}
 	</div>
 
+	<div>
+		<Button href="https://github.com/bdream" target="_blank">
+			<Label>Created by Dmitry Belov</Label>
+		</Button>
+	</div>
 
 </main>
