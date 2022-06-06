@@ -29,6 +29,10 @@
         let lineNumber = (randomLinesArrayIndex + 1);
         randomLine = lineNumber + ". " + lines[randomLinesArrayIndex];
     }
+
+    function reset() {
+        randomLine = resultPlaceholder;
+    }
 </script>
 
 <div>
@@ -58,7 +62,12 @@
                 </Button>
             </div>
             <div>
-                <h2><Label>Result:</Label></h2>
+                <h2>
+                    <Label>Result:</Label>
+                    <Button on:click={reset} variant="raised" color="secondary">
+                        <Label>Reset</Label>
+                    </Button>
+                </h2>
             </div>
             <div>
                 <Label>{randomLine}</Label>

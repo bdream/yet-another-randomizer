@@ -22,6 +22,10 @@
 
         randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
     }
+
+    function reset() {
+        randomNumber = resultPlaceholder;
+    }
 </script>
 
 <div>
@@ -37,7 +41,12 @@
                 </Button>
             </div>
             <div>
-                <h2><Label>Result:</Label></h2>
+                <h2>
+                    <Label>Result:</Label>
+                    <Button on:click={reset} variant="raised" color="secondary">
+                        <Label>Reset</Label>
+                    </Button>
+                </h2>
             </div>
             <div>
                 <Label>{randomNumber}</Label>
