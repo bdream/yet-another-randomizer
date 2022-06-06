@@ -30,6 +30,11 @@
         randomLine = lineNumber + ". " + lines[randomLinesArrayIndex];
     }
 
+    function cleanLines() {
+        lines = [];
+        reset();
+    }
+
     function reset() {
         randomLine = resultPlaceholder;
     }
@@ -47,7 +52,12 @@
                 </Button>
             </div>
             <div>
-                <h2><Label>Lines:</Label></h2>
+                <h2>
+                    <Label>Lines:</Label>
+                    <Button on:click={cleanLines} variant="raised" color="secondary">
+                        <Label>Clean</Label>
+                    </Button>
+                </h2>
                 <List>
                     {#each lines as line, i}
                         <Item>
