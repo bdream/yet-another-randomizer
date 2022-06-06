@@ -13,6 +13,7 @@
     function addNewLine() {
         if (newLine) {
             lines = [...lines, newLine];
+            newLine = "";
         }
     }
 
