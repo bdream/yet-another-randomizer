@@ -4,14 +4,22 @@
     import Button from '@smui/button';
     import { Label } from '@smui/common';
 
+    const resultPlaceholder = "(?)";
+
     let minNumber = 0;
     let maxNumber = 100;
 
-    let randomNumber = "(?)";
+    let randomNumber = resultPlaceholder;
 
     function generateRandomNumber() {
+        if (!Number.isInteger(minNumber) || !Number.isInteger(maxNumber)) {
+            randomNumber = resultPlaceholder;
+            return;
+        }
+
         let min = Math.ceil(minNumber);
         let max = Math.floor(maxNumber);
+
         randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
     }
 </script>

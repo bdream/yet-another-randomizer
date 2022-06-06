@@ -5,10 +5,12 @@
     import { Label } from '@smui/common';
     import List, { Item, Separator, Text } from '@smui/list';
 
+    const resultPlaceholder = "(?)";
+
     let newLine = "";
     $: lines = [];
 
-    let randomLine = "(?)";
+    let randomLine = resultPlaceholder;
 
     function addNewLine() {
         if (newLine) {
@@ -18,6 +20,11 @@
     }
 
     function getRandomLine() {
+        if (lines.length == 0) {
+            randomLine = resultPlaceholder;
+            return;
+        }
+
         let randomLinesArrayIndex = Math.floor(Math.random() * lines.length)
         let lineNumber = (randomLinesArrayIndex + 1);
         randomLine = lineNumber + ". " + lines[randomLinesArrayIndex];
