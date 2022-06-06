@@ -49,7 +49,7 @@
                 </h2>
             </div>
             <div>
-                <Label>{randomNumber}</Label>
+                <h1><Label>{randomNumber}</Label></h1>
             </div>
         </Content>
     </Paper>

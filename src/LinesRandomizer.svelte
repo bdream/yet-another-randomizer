@@ -80,7 +80,7 @@
                 </h2>
             </div>
             <div>
-                <Label>{randomLine}</Label>
+                <h1><Label>{randomLine}</Label></h1>
             </div>
         </Content>
     </Paper>
