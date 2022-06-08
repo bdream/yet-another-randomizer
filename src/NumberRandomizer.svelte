@@ -4,7 +4,7 @@
     import Button from '@smui/button';
     import { Label } from '@smui/common';
 
-    import { _ } from 'svelte-i18n';
+    import { _ } from './i18n';
 
     const resultPlaceholder = "(?)";
 

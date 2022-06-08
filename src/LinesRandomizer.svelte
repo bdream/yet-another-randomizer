@@ -5,7 +5,7 @@
     import { Label } from '@smui/common';
     import List, { Item, Separator, Text } from '@smui/list';
 
-    import { _ } from 'svelte-i18n';
+    import { _ } from './i18n';
 
     let newLine = '';
     $: lines = [];
