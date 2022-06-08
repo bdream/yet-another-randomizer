@@ -33,7 +33,7 @@
 
 <main>
 	<Group variant="outlined">
-		<Button on:click={() =>switchLocale('en')} variant="outlined">
+		<Button on:click={() => switchLocale('en')} variant="outlined">
 			<Label>EN</Label>
 		</Button>
 		<Button on:click={() => switchLocale('ru')} variant="outlined">
