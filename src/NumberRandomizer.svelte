@@ -4,16 +4,18 @@
     import Button from '@smui/button';
     import { Label } from '@smui/common';
 
+    import { _ } from 'svelte-i18n';
+
     const resultPlaceholder = "(?)";
 
     let minNumber = 0;
     let maxNumber = 100;
 
-    let randomNumber = resultPlaceholder;
+    let randomNumber = null;
 
     function generateRandomNumber() {
         if (!Number.isInteger(minNumber) || !Number.isInteger(maxNumber)) {
-            randomNumber = resultPlaceholder;
+            randomNumber = null;
             return;
         }
 
@@ -24,32 +26,40 @@
     }
 
     function reset() {
-        randomNumber = resultPlaceholder;
+        randomNumber = null;
     }
 </script>
 
 <div>
     <Paper>
-        <Title><h3>Number Randomizer</h3></Title>
-        <Subtitle>Returns a random integer number from the [min, max] interval</Subtitle>
+        <Title><h3>{$_('numberRandomizer')}</h3></Title>
+        <Subtitle>{$_('minMaxInterval')}</Subtitle>
         <Content>
             <div>
-                <Textfield bind:value={minNumber} label="Min value" type="number" variant="filled"/>
-                <Textfield bind:value={maxNumber} label="Max value" type="number" variant="filled"/>
+                <Textfield bind:value={minNumber} label="{$_('minValue')}" type="number" variant="filled"/>
+                <Textfield bind:value={maxNumber} label="{$_('maxValue')}" type="number" variant="filled"/>
                 <Button on:click={generateRandomNumber} variant="raised">
-                    <Label>Push your luck!</Label>
+                    <Label>{$_('pushYourLuckButton')}</Label>
                 </Button>
             </div>
             <div>
                 <h2>
-                    <Label>Result:</Label>
+                    <Label>{$_('setResult')}</Label>
                     <Button on:click={reset} variant="raised" color="secondary">
-                        <Label>Reset</Label>
+                        <Label>{$_('resetButton')}</Label>
                     </Button>
                 </h2>
             </div>
             <div>
-                <h1><Label>{randomNumber}</Label></h1>
+                <h1>
+                    <Label>
+                        {#if Number.isInteger(randomNumber)}
+                            {randomNumber}
+                        {:else}
+                            {$_('emptyRandomNumber')}
+                        {/if}
+                    </Label>
+                </h1>
             </div>
         </Content>
     </Paper>

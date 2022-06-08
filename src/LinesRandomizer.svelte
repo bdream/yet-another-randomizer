@@ -5,23 +5,23 @@
     import { Label } from '@smui/common';
     import List, { Item, Separator, Text } from '@smui/list';
 
-    const resultPlaceholder = "(?)";
+    import { _ } from 'svelte-i18n';
 
-    let newLine = "";
+    let newLine = '';
     $: lines = [];
 
-    let randomLine = resultPlaceholder;
+    let randomLine = '';
 
     function addNewLine() {
         if (newLine) {
             lines = [...lines, newLine];
-            newLine = "";
+            newLine = '';
         }
     }
 
     function getRandomLine() {
         if (lines.length == 0) {
-            randomLine = resultPlaceholder;
+            randomLine = '';
             return;
         }
 
@@ -36,26 +36,26 @@
     }
 
     function reset() {
-        randomLine = resultPlaceholder;
+        randomLine = '';
     }
 </script>
 
 <div>
     <Paper>
-        <Title><h3>Lines Randomizer</h3></Title>
-        <Subtitle>Returns a random line from the list of lines.</Subtitle>
+        <Title><h3>{$_('linesRandomizer')}</h3></Title>
+        <Subtitle>{$_('linesNames')}</Subtitle>
         <Content>
             <div>
-                <Textfield bind:value={newLine} label="New line" variant="filled"/>
+                <Textfield bind:value={newLine} label="{$_('linesSpace')}" variant="filled"/>
                 <Button on:click={addNewLine} variant="outlined">
-                    <Label>Add Line</Label>
+                    <Label>{$_('addLineButton')}</Label>
                 </Button>
             </div>
             <div>
                 <h2>
-                    <Label>Lines:</Label>
+                    <Label>{$_('newLines')}</Label>
                     <Button on:click={cleanLines} variant="raised" color="secondary">
-                        <Label>Clean</Label>
+                        <Label>{$_('cleanLinesButton')}</Label>
                     </Button>
                 </h2>
                 <List>
@@ -68,19 +68,27 @@
             </div>
             <div>
                 <Button on:click={getRandomLine} variant="raised">
-                    <Label>Push your luck!</Label>
+                    <Label>{$_('pushYourLuckButton')}</Label>
                 </Button>
             </div>
             <div>
                 <h2>
-                    <Label>Result:</Label>
+                    <Label>{$_('setResult')}</Label>
                     <Button on:click={reset} variant="raised" color="secondary">
-                        <Label>Reset</Label>
+                        <Label>{$_('resetButton')}</Label>
                     </Button>
                 </h2>
             </div>
             <div>
-                <h1><Label>{randomLine}</Label></h1>
+                <h1>
+                    <Label>
+                        {#if randomLine === ''}
+                            {$_('emptyRandomLine')}
+                        {:else}
+                            {randomLine}
+                        {/if}
+                    </Label>
+                </h1>
             </div>
         </Content>
     </Paper>
